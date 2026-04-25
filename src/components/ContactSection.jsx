@@ -1,5 +1,5 @@
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
-import { MapPin, Phone, Mail, User } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -8,174 +8,107 @@ export default function ContactSection() {
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    alert('Form submitted! (This is a demo)');
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section id="contact" className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl text-center mb-4">
-          Get In Touch
-        </h2>
-        <p className="text-center text-gray-600 mb-16 text-lg">
-          We'd love to hear from you
-        </p>
+        <h2 className="text-5xl text-center mb-16">Get In Touch</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-3xl mb-8">Contact Details</h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="mb-1">Address</h4>
-                    <p className="text-gray-600">
-                      Excellence Corporation Ltd.<br />
-                      123 Business Park, Floor 5<br />
-                      Innovation District, Metro City<br />
-                      PIN: 123456
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-3 rounded-lg">
-                    <Phone className="w-6 h-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="mb-1">Phone</h4>
-                    <p className="text-gray-600">
-                      +1 (555) 123-4567<br />
-                      +1 (555) 987-6543
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-purple-100 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h4 className="mb-1">Email</h4>
-                    <p className="text-gray-600">
-                      info@excellencecorp.com<br />
-                      sales@excellencecorp.com
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-orange-100 p-3 rounded-lg">
-                    <User className="w-6 h-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h4 className="mb-1">Contact Person</h4>
-                    <p className="text-gray-600">
-                      John Anderson<br />
-                      Business Development Manager
-                    </p>
-                  </div>
-                </div>
-              </div>
+          
+          {/* Left Side */}
+          <div className="h-full">
+            <div className="bg-gray-100 rounded-2xl h-[500px] relative overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2412648718453!2d-73.98784368459395!3d40.748817379328864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                className="rounded-2xl"
+              />
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-2xl">
-              <h4 className="text-xl mb-3">Business Hours</h4>
-              <div className="space-y-2 text-gray-600">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p>Saturday: 10:00 AM - 2:00 PM</p>
-                <p>Sunday: Closed</p>
+            <div className="mt-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <MapPin className="text-blue-600" size={24} />
+                <span>123 Business Street, New York, NY 10001</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Phone className="text-blue-600" size={24} />
+                <span>+1 (555) 123-4567</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Mail className="text-blue-600" size={24} />
+                <span>contact@company.com</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-50 p-8 rounded-2xl shadow-lg">
-            <h3 className="text-3xl mb-6">Send us a Message</h3>
-
-            {submitted ? (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg text-center">
-                <p className="mb-2">✓ Thank you for your message!</p>
-                <p className="text-sm">We'll get back to you soon.</p>
+          {/* Right Side */}
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              <div>
+                <label className="block mb-2">Name</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  placeholder="Your name"
+                />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block mb-2 text-gray-700">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="Enter your name"
-                  />
-                </div>
 
-                <div>
-                  <label htmlFor="email" className="block mb-2 text-gray-700">
-                    Your Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
+              <div>
+                <label className="block mb-2">Email</label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  placeholder="your@email.com"
+                />
+              </div>
 
-                <div>
-                  <label htmlFor="message" className="block mb-2 text-gray-700">
-                    Your Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
-                    placeholder="Tell us how we can help you..."
-                  />
-                </div>
+              <div>
+                <label className="block mb-2">Message</label>
+                <textarea
+                  required
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  rows={6}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
+                  placeholder="Your message..."
+                />
+              </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg transition-colors shadow-lg hover:shadow-xl"
-                >
-                  Submit Message
-                </button>
-              </form>
-            )}
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:shadow-lg transition-shadow"
+              >
+                Send Message
+              </button>
+
+            </form>
           </div>
+
         </div>
       </div>
     </section>
