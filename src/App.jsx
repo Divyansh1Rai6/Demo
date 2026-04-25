@@ -15,7 +15,7 @@ export default function App() {
     <div className="w-full">
       <Navigation />
       <div id="home"><HeroCarousel /></div>
-      <div id="marquee">Marquee</div>
+      <div id="marquee"><Marquee /></div>
       <div id="specialties"><SpecialtyIcons /></div>
       <div id="products"><ProductsCarousel /></div>
       <div id="about"><AboutSection /></div>
