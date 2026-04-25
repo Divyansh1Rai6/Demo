@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-            animation: {
+      animation: {
         marquee: 'marquee 20s linear infinite',
       },
       keyframes: {
@@ -16,8 +16,6 @@ export default {
         },
       },
     },
-    },
   },
   plugins: [],
-}
-
+};
