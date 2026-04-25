@@ -8,12 +8,14 @@ import InstagramFeed from './components/InstagramFeed';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Marquee from './components/Marquee';
 
 export default function App() {
   return (
     <div className="w-full">
       <Navigation />
       <div id="home"><HeroCarousel /></div>
+      <div id="marquee">Marquee</div>
       <div id="specialties"><SpecialtyIcons /></div>
       <div id="products"><ProductsCarousel /></div>
       <div id="about"><AboutSection /></div>
