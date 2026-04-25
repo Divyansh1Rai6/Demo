@@ -24,14 +24,12 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white shadow-lg py-4'
-          : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
+        isScrolled ? 'shadow-lg py-4' : 'shadow-md py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <div className={`transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+        <div className="text-gray-900">
           <h1 className="text-2xl md:text-3xl">Excellence Corp</h1>
         </div>
 
@@ -40,9 +38,7 @@ export default function Navigation() {
             <a
               key={link.name}
               href={link.href}
-              className={`transition-colors hover:text-blue-600 ${
-                isScrolled ? 'text-gray-700' : 'text-white'
-              }`}
+              className="text-gray-700 transition-colors hover:text-blue-600"
             >
               {link.name}
             </a>
@@ -51,7 +47,7 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className={`md:hidden p-2 ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+          className="md:hidden p-2 text-gray-900"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
