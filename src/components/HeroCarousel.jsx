@@ -27,59 +27,70 @@ export default function HeroCarousel() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <div className="absolute inset-0 bg-black/40 z-10" />
+    <div className="relative w-full min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Image Carousel */}
+          <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden rounded-2xl shadow-2xl">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                  index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
 
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-          }`}
-        >
-          <img
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover"
-          />
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white/50 p-3 rounded-full transition-colors backdrop-blur-sm"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white/50 p-3 rounded-full transition-colors backdrop-blur-sm"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentSlide ? 'bg-white w-8' : 'bg-white/50 w-2'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Headline + CTA */}
+          <div className="space-y-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-tight">
+              Excellence in Every Solution
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+              Delivering innovative products and services that drive success for businesses worldwide
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg transition-colors shadow-lg hover:shadow-xl">
+                Discover More
+              </button>
+              <button className="border-2 border-gray-300 hover:border-blue-600 text-gray-900 px-8 py-4 rounded-lg transition-colors hover:bg-gray-50">
+                Contact Us
+              </button>
+            </div>
+          </div>
         </div>
-      ))}
-
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white px-4">
-        <h1 className="text-5xl md:text-7xl mb-6 text-center">
-          Excellence in Every Solution
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 text-center max-w-3xl">
-          Delivering innovative products and services that drive success
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg transition-colors">
-          Discover More
-        </button>
-      </div>
-
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white/50 p-3 rounded-full transition-colors"
-      >
-        <ChevronLeft className="w-6 h-6 text-white" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white/50 p-3 rounded-full transition-colors"
-      >
-        <ChevronRight className="w-6 h-6 text-white" />
-      </button>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide ? 'bg-white w-8' : 'bg-white/50'
-            }`}
-          />
-        ))}
       </div>
     </div>
   );
